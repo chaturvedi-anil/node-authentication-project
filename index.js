@@ -1,5 +1,6 @@
 import express from 'express';
 import routes from './routes/index.js';
+import db from './config/mongoose.js';
 const PORT = 8000;
 const app = express();
 
