@@ -4,3 +4,13 @@ export function homeController(req, res)
         title: 'Home'    
     });
 }
+
+export function signUp(req, res)
+{
+    return res.render('sign_up', {title: 'Sign Up'});
+}
+
+export function signIn(req, res)
+{
+    return res.render('sign_in', {title: 'Sign In'});
+}
