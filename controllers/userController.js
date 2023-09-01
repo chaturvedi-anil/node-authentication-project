@@ -1,6 +1,16 @@
 import User from '../models/users.js';
 import bcrypt from 'bcrypt';
 
+export function signUp(req, res)
+{
+    return res.render('sign_up', {title: 'Sign Up'});
+}
+
+export function signIn(req, res)
+{
+    return res.render('sign_in', {title: 'Sign In'});
+}
+
 export function userProfile(req, res)
 {
     return res.render('profile',{title: 'User Profile'});
@@ -25,7 +35,7 @@ export async function createUser(req, res)
                 await User.create(req.body);
                 console.log('new user created');
 
-                return res.redirect('/sign-in');
+                return res.redirect('/users/sign-in');
             }
         }
         else
@@ -42,35 +52,12 @@ export async function createUser(req, res)
 
 export async function createSession(req, res)
 {
-    try
-    {
-        const username = req.body.email;
-        const passwordToCheck = req.body.password; // The password entered by the user
+    console.log('createSession ');
+    return res.redirect('/users/profile');
+}
 
-        let user = await User.findOne({ email:username });
-        if(!user)
-        {
-            console.log('user not found');
-            return res.redirect('back');
-        }
-        else 
-        {
-            const passwordMatch = await bcrypt.compare(passwordToCheck, user.password);
-            if(passwordMatch) 
-            {
-                console.log('signIn successfully');
-                return res.redirect('/users/profile');
-            } 
-            else 
-            {
-                console.log('Password is incorrect');
-                return res.redirect('back');
-            }
-        }
-    }
-    catch(err)
-    {
-        console.log("error in sign in :", err);
-        return res.redirect('back');
-    }
+// detroy session 
+export function destroySession(req, res)
+{
+    
 }
