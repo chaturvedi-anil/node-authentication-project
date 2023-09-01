@@ -21,7 +21,16 @@ export function signIn(req, res)
 
 export function userProfile(req, res)
 {
-    return res.render('profile',{title: 'User Profile'});
+    // This is the callback function that will handle the request.
+    // Check if the user is authenticated.
+    if (req.isAuthenticated()) 
+    {
+        return res.render('profile',{title: 'User Profile'});
+    } 
+    else 
+    {
+        res.redirect('/users/sign-in');
+    }
 }
 
 export async function createUser(req, res)

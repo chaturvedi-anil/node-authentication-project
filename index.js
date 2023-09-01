@@ -35,6 +35,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Set authenticated user in locals for views
+app.use(passportLocal.setAuthenticatedUser);
+
 app.use(routes);
 app.listen(PORT, (err)=>{
     if(err) console.log('Error : ',err);
