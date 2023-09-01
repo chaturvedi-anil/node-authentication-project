@@ -3,11 +3,19 @@ import bcrypt from 'bcrypt';
 
 export function signUp(req, res)
 {
+    if(req.isAuthenticated())
+    {
+        res.redirect('/users/profile');
+    }
     return res.render('sign_up', {title: 'Sign Up'});
 }
 
 export function signIn(req, res)
 {
+    if(req.isAuthenticated())
+    {
+        res.redirect('/users/profile');
+    }
     return res.render('sign_in', {title: 'Sign In'});
 }
 
@@ -59,5 +67,11 @@ export async function createSession(req, res)
 // detroy session 
 export function destroySession(req, res)
 {
-    
+    req.logout((err)=>
+    {
+        if(err) console.log("Error in signOut ", err);
+
+        console.log('SignOut successfully');
+    });
+    return res.redirect('/');
 }
