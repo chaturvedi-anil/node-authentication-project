@@ -1,7 +1,7 @@
 import { Router } from "express";
-
+import { createUser } from "../controllers/userController.js";
 const route = Router();
 
-console.log('users');
+route.post('/create', createUser);
 
 export default route;
