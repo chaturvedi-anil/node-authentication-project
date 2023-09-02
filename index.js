@@ -1,6 +1,7 @@
 import express from 'express';
 import routes from './routes/index.js';
 import db from './config/mongoose.js';
+import expressLayout from 'express-ejs-layouts';
 import session from 'express-session';
 import passport from 'passport';
 import passportLocal from './config/passport-local-strategy.js';
@@ -12,6 +13,10 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static('./assets'));
+app.use(expressLayout);
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
 app.set('view engine', 'ejs');
 app.set('views', './views');
 

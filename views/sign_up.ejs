@@ -1,27 +1,12 @@
-<!-- views/sign_up.ejs -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel="stylesheet" href="/css/sign_up.css">
-</head>
-<body>
-    <header>
-        <h1>Nodejs Authentication System</h1>
-    </header>
-    <main class="container">
-        <h1>Sign Up</h1>
-        <div class="form-container">
-            <form action="/users/create" method="post">
-                <input type="text" name="name" placeholder="Enter Your Name" required>
-                <input type="email" name="email" placeholder="Enter Your Email" required>
-                <input type="password" name="password" placeholder="Enter Password" required>
-                <input type="password" name="confirm_password" placeholder="confirm password" required>
-                <input type="submit" value="register">
-            </form>
-        </div>
-    </main>
-</body>
-</html>
+<main class="container">
+    <h1>Sign Up</h1>
+    <div class="form-container">
+        <form action="/users/create" method="post">
+            <input type="text" name="name" placeholder="Enter Your Name" required>
+            <input type="email" name="email" placeholder="Enter Your Email" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            <input type="password" name="confirm_password" placeholder="confirm password" required>
+            <input type="submit" value="register">
+        </form>
+    </div>
+</main>
