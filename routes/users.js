@@ -7,9 +7,11 @@ const route = Router();
 import {
   signUp,
   signIn,
+  getResetPasswordPage,
   userProfile,
   createUser,
   createSession,
+  updatePassword,
   destroySession,
 } from "../controllers/userController.js";
 
@@ -22,6 +24,7 @@ route.get('/sign-up', signUp);
 // Route for user login (Sign-in)
 route.get('/sign-in', signIn);
 
+route.get('/reset-password', getResetPasswordPage);
 // Route for user logout (Sign-out)
 route.get('/sign-out', destroySession);
 
@@ -33,5 +36,10 @@ route.post('/create-session', passport.authenticate(
     'local',
     { failureRedirect: '/users/sign-in' }
 ), createSession);
+
+// update password
+route.post('/update-password', updatePassword);
+
+route.get('/destroy-session', destroySession);
 
 export default route;

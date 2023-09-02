@@ -1,5 +1,4 @@
 import User from '../models/users.js';
-import bcrypt from 'bcrypt';
 
 export function signUp(req, res)
 {
@@ -21,7 +20,6 @@ export function signIn(req, res)
 
 export function userProfile(req, res)
 {
-    // This is the callback function that will handle the request.
     // Check if the user is authenticated.
     if (req.isAuthenticated()) 
     {
@@ -32,7 +30,17 @@ export function userProfile(req, res)
         res.redirect('/users/sign-in');
     }
 }
+export function getResetPasswordPage(req, res)
+{
+    if(req.isAuthenticated())
+    {
+        return res.render('reset_password', {title: 'Reset Password'});
+    }
 
+    // TODO adding flash messages 
+}
+
+// creating new users
 export async function createUser(req, res)
 {
     try
@@ -64,16 +72,49 @@ export async function createUser(req, res)
     catch(err)
     {
         console.log('Error in creating user :', err);
+        return res.send('Internal Server Error');
     }
 }
 
-export async function createSession(req, res)
+export function createSession(req, res)
 {
-    console.log('createSession ');
+
     return res.redirect('/users/profile');
 }
 
-// detroy session 
+export async function updatePassword(req, res)
+{
+    try
+    {
+        let userId = req.user._id;
+        let user = await User.findById({_id: userId});
+        
+        if(user)
+        {
+            if(req.body.newPassword !== req.body.confirmNewPassword)
+            {
+                console.log('password and confirm password should be same');
+                return res.redirect('back');
+            }
+            else
+            {
+                // Update the user's password
+                user.updateUserPassword(req.body.newPassword);
+
+                console.log('password updated successfully');
+                return res.redirect('/users/profile');
+            }
+        }
+        return res.status(404).send('user not found');
+    }
+    catch(error)
+    {
+        console.error('Error in updating the password:', error);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
+// destroy session 
 export function destroySession(req, res)
 {
     req.logout((err)=>
@@ -81,6 +122,6 @@ export function destroySession(req, res)
         if(err) console.log("Error in signOut ", err);
 
         console.log('SignOut successfully');
+        return res.redirect('/');
     });
-    return res.redirect('/');
 }
