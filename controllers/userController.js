@@ -38,8 +38,6 @@ export function getResetPasswordPage(req, res)
     {
         return res.render('reset_password', {title: 'Reset Password'});
     }
-
-    // TODO adding flash messages 
 }
 
 // creating new users
@@ -54,20 +52,21 @@ export async function createUser(req, res)
         {
             if(req.body.password !== req.body.confirm_password)
             {
-                console.log('password and confirm password should be same');
+                req.flash('error', 'Password and confirm password should be same');
                 return res.redirect('back');
             }
             else
             {
                 await User.create(req.body);
-                console.log('new user created');
-
+                // console.log('new user created');
+                req.flash('success', 'New User registered');
                 return res.redirect('/users/sign-in');
             }
         }
         else
         {
-            console.log('user is already registered');
+            // console.log('user is already registered');
+            req.flash('error', 'This User is already registered');
             return res.redirect('back');
         }
     }
@@ -82,6 +81,7 @@ export async function createUser(req, res)
 export function createSession(req, res)
 {
 
+    req.flash('success', 'Signed In Successfully');
     return res.redirect('/users/profile');
 }
 
@@ -97,7 +97,7 @@ export async function updatePassword(req, res)
         {
             if(req.body.newPassword !== req.body.confirmNewPassword)
             {
-                console.log('password and confirm password should be same');
+                req.flash('error', 'New password and confirm password should be same');
                 return res.redirect('back');
             }
             else
@@ -110,8 +110,8 @@ export async function updatePassword(req, res)
 
                 // Update the user's document with the new password
                 await User.updateOne({ _id: userId }, update);
-                console.log('password updated successfully :');
-
+                // console.log('password updated successfully :');
+                req.flash('success', 'Password updated successfully');
                 return res.redirect('/users/profile');
             }
         }
@@ -131,7 +131,8 @@ export function destroySession(req, res)
     {
         if(err) console.log("Error in signOut ", err);
 
-        console.log('SignOut successfully');
+        // console.log('SignOut successfully');
+        req.flash('success', 'SignOut successfully');
         return res.redirect('/');
     });
 }

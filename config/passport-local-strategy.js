@@ -20,7 +20,8 @@ passport.use(
                 
                 if (!user) 
                 {
-                    console.log('User not found');
+                    // console.log('User not found');
+                    req.flash('error', 'User not found');
                     return done(null, false, { message: 'User not found' }); // Inform Passport that authentication failed
                 }
 
@@ -29,12 +30,13 @@ passport.use(
                 
                 if (passwordMatch) 
                 {
-                    console.log('Sign-in successful');
+                    // console.log('Sign-in successful');
                     return done(null, user); // User is authenticated
                 } 
                 else 
                 {
-                    console.log('Password is incorrect');
+                    // console.log('Password is incorrect');
+                    req.flash('error', 'Incorrect password');
                     return done(null, false, { message: 'Incorrect password' }); // Inform Passport that authentication failed
                 }
             } 
@@ -71,7 +73,6 @@ passport.deserializeUser((id, done) =>
 // check if the user is authenticated 
 passport.checkAuthentication = function(req, res, next)
 {
-    console.log('pahuch');
     // if user is authenticated, then pass the req to next function(controller's action)
     if(req.isAuthenticated())
     {

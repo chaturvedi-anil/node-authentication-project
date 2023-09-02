@@ -5,6 +5,8 @@ import expressLayout from 'express-ejs-layouts';
 import session from 'express-session';
 import passport from 'passport';
 import passportLocal from './config/passport-local-strategy.js';
+import flash from 'connect-flash';
+import { setFlash } from './config/middleware.js';
 
 const PORT = 8000;
 const app = express();
@@ -43,7 +45,12 @@ app.use(passport.session());
 // Set authenticated user in locals for views
 app.use(passportLocal.setAuthenticatedUser);
 
+app.use(flash());
+app.use(setFlash);
+
+// all routes
 app.use(routes);
+
 app.listen(PORT, (err)=>{
     if(err) console.log('Error : ',err);
     console.log(`server is runing on ${PORT} port`);
