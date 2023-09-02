@@ -40,32 +40,6 @@ userSchema.pre('save', async function (next)
     }
 });
 
-// Add a custom method to update the password
-userSchema.methods.updateUserPassword = async function (newPassword) 
-{
-    try 
-    {
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(newPassword, salt);
-        this.password = hashedPassword;
-        await this.save();
-    } 
-    catch (error) 
-    {
-        throw error; 
-    }
-  };
-
-// // Method to compare passwords
-// userSchema.methods.comparePassword = function (candidatePassword, callback) 
-// {
-//     bcrypt.compare(candidatePassword, this.password, (err, isMatch) => 
-//     {
-//         if (err) return callback(err);
-//         callback(null, isMatch);
-//     });
-// };
-
 const User = mongoose.model('User', userSchema);
 
 export default User;

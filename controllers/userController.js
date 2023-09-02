@@ -1,4 +1,6 @@
 import User from '../models/users.js';
+import bcrypt from 'bcrypt';
+
 
 export function signUp(req, res)
 {
@@ -76,12 +78,14 @@ export async function createUser(req, res)
     }
 }
 
+// creating session for signed in user
 export function createSession(req, res)
 {
 
     return res.redirect('/users/profile');
 }
 
+// updating existing password 
 export async function updatePassword(req, res)
 {
     try
@@ -98,10 +102,16 @@ export async function updatePassword(req, res)
             }
             else
             {
-                // Update the user's password
-                user.updateUserPassword(req.body.newPassword);
+                const salt = await bcrypt.genSalt(10);
+                const hashedPassword = await bcrypt.hash(req.body.newPassword, salt);
 
-                console.log('password updated successfully');
+                // Update the user's password using the $set operator
+                const update = { $set: { password: hashedPassword } };
+
+                // Update the user's document with the new password
+                await User.updateOne({ _id: userId }, update);
+                console.log('password updated successfully :');
+
                 return res.redirect('/users/profile');
             }
         }
