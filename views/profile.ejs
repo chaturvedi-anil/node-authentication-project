@@ -1,4 +1,15 @@
 <main>
-    <a href="/users/sign-out">Sign Out</a>
-    <a href="/users/reset-password">Reset Password</a>
+    <div>
+        <p>
+            <%= user.name %>
+        </p>
+        <p>
+            <%= user.email %>
+        </p>
+    </div>
+    <div>
+        <p>
+            <a href="/users/reset-password">Reset Password</a>
+        </p>
+    </div>
 </main>
