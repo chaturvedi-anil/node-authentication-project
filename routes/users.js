@@ -42,4 +42,13 @@ route.post('/update-password', updatePassword);
 
 route.get('/destroy-session', destroySession);
 
+// passport-google-oauth routes
+route.get('/auth/google', passport.authenticate('google', {scope: ['profile','email']}));
+
+// passport for authentication 
+route.get('/auth/google/callback', passport.authenticate(
+  'google',
+  {failureRedirect: '/users/sign-in'}
+), createSession);
+
 export default route;

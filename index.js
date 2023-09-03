@@ -5,6 +5,7 @@ import expressLayout from 'express-ejs-layouts';
 import session from 'express-session';
 import passport from 'passport';
 import passportLocal from './config/passport-local-strategy.js';
+import passportGoogle from './config/passport-google-oauth-strategy.js';
 import flash from 'connect-flash';
 import { setFlash } from './config/middleware.js';
 

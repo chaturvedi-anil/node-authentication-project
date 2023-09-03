@@ -1,3 +1,4 @@
 node_modules/
 
 TODO_IN_this_project.txt
+.env
