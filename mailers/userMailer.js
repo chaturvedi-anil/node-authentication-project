@@ -2,14 +2,14 @@ import nodeMailer from '../config/nodemailer.js';
 
 export function newUserCreatedMailer(newUser)
 {
-    console.log('inside the newUserCreated mailer : ',newUser );
+    let htmlString = nodeMailer.renderTemplate({newUser: newUser}, 'newUser.ejs');
 
     nodeMailer.transporter.sendMail(
         {
             from: process.env.GMAIL_USERNAME,
             to: newUser.email,
             subject: 'Account Created',
-            html: '<h1> Congratulations, your account is created !</h1>' 
+            html: htmlString
         },
         function(err, info)
         {
@@ -18,7 +18,7 @@ export function newUserCreatedMailer(newUser)
                 console.log('Error in sending mail to user : ', err);
                 return;
             }
-            console.log('mail sent to user', info);
+            // console.log('mail sent to user', info);
             return;
         }
     );

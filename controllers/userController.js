@@ -60,7 +60,7 @@ export async function createUser(req, res)
                 let newUser = await User.create(req.body);
                 
                 // new user passing to mailer function
-                // newUserCreatedMailer(newUser);
+                newUserCreatedMailer(newUser);
                 
                 req.flash('success', 'New User registered');
                 return res.redirect('/users/sign-in');

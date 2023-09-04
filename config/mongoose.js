@@ -1,7 +1,15 @@
+import dotenv from 'dotenv';
+// Load environment variables from .env file
+dotenv.config();
 import mongoose from 'mongoose';
 
-const uri = 'mongodb://localhost:27017/nodejs_authentication_db';
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = process.env.MONGO_DB_CLOUD_SERVER;
+mongoose.connect(uri, 
+    { 
+        useNewUrlParser: true, 
+        useUnifiedTopology: true 
+    }
+);
 
 const db = mongoose.connection;
 
