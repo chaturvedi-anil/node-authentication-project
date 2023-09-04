@@ -1,15 +1,17 @@
+<link rel="stylesheet" href="/css/sign_in.css">
 <main>
-    <h1>Sign In</h1>
-    <div>
-        
+    <div class="form-container">
+        <h1>Sign In</h1>
         <form action="/users/create-session" method="post">
             <input type="email" name="email" placeholder="Enter Your Email" required>
             <input type="password" name="password" placeholder="Enter Password" required>
-            <input type="submit" value="Sign In">
+            <input type="submit" value="Sign In" class="btn">
         </form>
 
-        <p>
+        <p class="or">OR</p>
+        
+        <button class="social-btn">
             <a href="/users/auth/google">Google Sign In</a>
-        </p>
+        </button>
     </div>
 </main>

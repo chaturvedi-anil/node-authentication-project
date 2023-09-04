@@ -1,0 +1,38 @@
+main
+{
+    padding: 20px;
+}
+
+.details-container
+{
+
+    background-color: rgb(37, 37, 37);
+    font-size: 1.5rem;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+
+}
+.details-container h2
+{
+    padding: 0.5rem;
+    margin: 1rem;
+    margin-bottom: 1rem;
+}
+
+.reset-btn
+{
+    margin-top: 1rem;
+    border-radius: 10px;
+    background-color: rgb(78, 118, 237);
+    padding: 0.5rem;
+}
+.reset-btn a
+{
+    text-decoration: none;
+    color: white;
+}
+.reset-btn:hover
+{
+    background-color: rgb(31, 79, 224);
+}

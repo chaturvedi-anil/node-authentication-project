@@ -1,0 +1,52 @@
+
+/* Custom styles */
+body {
+    background-color: black;
+}
+
+.header {
+    background-color: black;
+    color: white;
+    padding: 1rem;
+}
+
+.main-container
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.heading-container
+{
+    flex-grow: 3;
+}
+.heading-container h1
+{
+    font-size: 2rem;
+}
+.heading-container h1 a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.links-container
+{
+    flex-grow: 1;
+}
+.links-container .nav-item
+{
+    list-style: none;
+    font-size: 1.5rem;
+}
+.nav-item .nav-link
+{
+    text-transform: capitalize;
+    text-decoration: none;
+    color: white;
+}
+.nav-link:hover
+{
+    text-decoration: underline;
+}
+
