@@ -7,6 +7,7 @@ import passport from 'passport';
 import passportOauth from 'passport-google-oauth';
 import crypto from 'crypto';
 import User from '../models/users.js';
+import { newUserCreatedMailer } from '../mailers/userMailer.js';
 const googleStrategy = passportOauth.OAuth2Strategy;
 
 passport.use(new googleStrategy(
@@ -56,6 +57,8 @@ passport.use(new googleStrategy(
                         console.error('Error in creating newUser in passport-google');
                         return done(err);
                     }
+                    // new user passing to mailer function
+                    newUserCreatedMailer(newUser);
                     
                     console.log('New User created using Google');
                     return done(null, newUser);

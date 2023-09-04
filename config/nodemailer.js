@@ -9,10 +9,11 @@ let transporter = nodemailer.createTransport(
         service: 'smtp', // Use SMTP as the email service
         host: 'smtp.gmail.com', // SMTP host for Gmail
         port: 587, // Port number for the SMTP server
-        secure: false, // Use TLS (true) or not (false)
+        secure: true, // Use TLS (true) or not (false)
         auth: {
-            user: process.env.CODEIAL_GMAIL_USERNAME, // Your Gmail username from environment variables
-            pass: process.env.CODEIAL_GMAIL_PASSWORD // Your Gmail password from environment variables
+            type: 'LOGIN',
+            user: process.env.GMAIL_USERNAME, // Your Gmail username from environment variables
+            pass: process.env.GMAIL_PASSWORD, // Your Gmail password from environment variables
         }
     }
 );

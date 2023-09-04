@@ -1,6 +1,6 @@
 import User from '../models/users.js';
 import bcrypt from 'bcrypt';
-
+import {newUserCreatedMailer} from "../mailers/userMailer.js";
 
 export function signUp(req, res)
 {
@@ -57,8 +57,11 @@ export async function createUser(req, res)
             }
             else
             {
-                await User.create(req.body);
-                // console.log('new user created');
+                let newUser = await User.create(req.body);
+                
+                // new user passing to mailer function
+                // newUserCreatedMailer(newUser);
+                
                 req.flash('success', 'New User registered');
                 return res.redirect('/users/sign-in');
             }
