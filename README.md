@@ -44,8 +44,8 @@ npm start
 To run this project, you will need to add the following environment variables to your .env file
 
 
-`GOOGLE_CLIENT_ID` = `your_google_client_id`          
-`GOOGLE_CLIENT_SECRETE` = `google_client_secrete`
+`GOOGLE_CLIENT_ID` = `your_google_client_id`             
+`GOOGLE_CLIENT_SECRETE` = `your_google_client_secrete`
 `GOOGLE_CALLBACK_URL` = `http://localhost:8000/users/auth/google/callback`
 
 #### This is for nodemailer
