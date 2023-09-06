@@ -7,7 +7,9 @@ const uri = process.env.MONGO_DB_CLOUD_SERVER;
 mongoose.connect(uri, 
     { 
         useNewUrlParser: true, 
-        useUnifiedTopology: true 
+        useUnifiedTopology: true,
+        ssl: true,
+        tls: true,
     }
 );
 
